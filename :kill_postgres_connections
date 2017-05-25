@@ -1,0 +1,10 @@
+-- enable_extension("plpgsql")
+   -> 0.0270s
+-- create_table("categories", {:force=>true})
+   -> 0.0183s
+-- create_table("users", {:force=>true})
+   -> 0.0159s
+-- create_table("videos", {:force=>true})
+   -> 0.0170s
+-- initialize_schema_migrations_table()
+   -> 0.0355s
