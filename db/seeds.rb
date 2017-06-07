@@ -20,5 +20,10 @@ videos = Video.create([{title: "Monk", description: "Adrian Monk is a brilliant
 users = User.create([{email: "dan@example.com", full_name: "Dan Myers", password: "password"},
 {email: "katie@example.com", full_name: "Katie Myers", password: "password"}])
 
+reviews = Review.create([{stars: 5, content: "Awesome show!", video_id: 2, user_id: 1},
+{stars: 3, content: "Meh...", video_id: 1, user_id: 2}, 
+{stars: 4, content: "Monk is a cool dude.", video_id: 1, user_id: 1}])
+
+queue_positions = QueuePosition.create([{position: 1, user_id: 1, video_id: 1}, {position: 2, user_id: 1, video_id: 2}] )
 
 

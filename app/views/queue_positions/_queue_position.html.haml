@@ -1,0 +1,18 @@
+%tr
+  = hidden_field_tag "queue_positions[][id]", queue_position.id
+  %td
+    = text_field_tag "queue_positions[][position]", queue_position.position, class: "form-control", 
+    id: "video_#{queue_position.video.id}"
+    // %input.form-control(type="text" value="#{queue_position.position}")
+  %td
+    = link_to queue_position.video_title, queue_position.video
+  %td
+    = button_to "Play", nil, class: "btn btn-default"
+  %td
+    // = "#{queue_position.stars} Stars"
+    = select_tag "queue_positions[][stars]", options_for_select(options_for_stars, queue_position.stars), include_blank: true, class: "form-group"
+  %td
+    = link_to queue_position.category_name, queue_position.category
+  %td
+    = link_to queue_position, method: :delete do
+      %i.glyphicon.glyphicon-remove
