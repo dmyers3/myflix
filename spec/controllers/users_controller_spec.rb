@@ -1,6 +1,21 @@
 require 'spec_helper'
 
 describe UsersController do
+  describe "GET show" do
+    it "sets @user if logged in" do
+      dan = Fabricate(:user)
+      session[:user_id] = dan.id
+      get :show, id: dan.id
+      expect(assigns(:user)).to eq(dan)
+    end
+    
+    it "redirects to home page if logged out" do
+      dan = Fabricate(:user)
+      get :show, id: dan.id
+      expect(response).to redirect_to root_path
+    end
+  end
+  
   describe "GET new" do
     it "sets @user if not logged in" do
       get :new

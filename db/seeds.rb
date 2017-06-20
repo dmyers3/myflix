@@ -26,4 +26,6 @@ reviews = Review.create([{stars: 5, content: "Awesome show!", video_id: 2, user_
 
 queue_positions = QueuePosition.create([{position: 1, user_id: 1, video_id: 1}, {position: 2, user_id: 1, video_id: 2}] )
 
+relationships = Relationship.create([{follower: User.first, leader: User.last}, {follower: User.last, leader: User.first}])
+
 

@@ -11,10 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170531192620) do
+ActiveRecord::Schema.define(version: 20170619151328) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ar_internal_metadata", id: false, force: true do |t|
+    t.string   "key",        limit: nil, null: false
+    t.string   "value",      limit: nil
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "businesses", force: true do |t|
+    t.string   "street_address_1", limit: nil
+    t.string   "street_address_2", limit: nil
+    t.string   "city",             limit: nil
+    t.string   "state",            limit: nil
+    t.string   "zip",              limit: nil
+    t.string   "phone_number",     limit: nil
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -26,6 +44,13 @@ ActiveRecord::Schema.define(version: 20170531192620) do
     t.integer  "user_id"
     t.integer  "video_id"
     t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "relationships", force: true do |t|
+    t.integer  "leader_id"
+    t.integer  "follower_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -45,6 +70,7 @@ ActiveRecord::Schema.define(version: 20170531192620) do
     t.string   "full_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "avatar_location"
   end
 
   create_table "videos", force: true do |t|
