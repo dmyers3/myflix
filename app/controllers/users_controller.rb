@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     
     if @user.save
       session[:user_id] = @user.id
-      AppMailer.example(current_user, @user).deliver
+      AppMailer.welcome(current_user).deliver
       flash[:success] = "Account created!"
       redirect_to home_path
     else
