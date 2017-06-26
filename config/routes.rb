@@ -24,6 +24,19 @@ Myflix::Application.routes.draw do
     resources :reviews, only: [:create]
   end
   
+  get 'reset_password', to: 'password_tokens#new'
+  post 'reset_passwords', to: 'password_tokens#create'
+  delete 'password/:id', to: 'password_tokens#destroy'
+  patch 'reset_password/:token', to: 'passwords#update'
+  
+  get 'confirm_reset_password', to: 'password_tokens#confirm'
+  get 'expired_token', to: 'new_passwords#expired_token'
+  
+  resources :new_passwords, only: [:show, :create]
+  resources :invitations, only: [:new, :create]
+  
+  
+  
   
   
   if Rails.env.development?

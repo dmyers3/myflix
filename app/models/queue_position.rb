@@ -34,7 +34,7 @@ class QueuePosition < ActiveRecord::Base
   end
   
   def self.new_position(user)
-    user.queue_positions.size + 1
+    user.queue_positions.count + 1
   end
   
   def self.reorder(user)
