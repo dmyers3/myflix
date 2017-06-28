@@ -1,6 +1,6 @@
 class AppMailer < ActionMailer::Base
   def welcome(user)
-    mail from: 'welcome@MyFlix.com', to: user.email, subject: 'Welcome!'
+    mail from: 'MyFlix <welcome@MyFlix.com>', to: user.email, subject: 'Welcome!'
   end
   
   def send_password_reset(user)
