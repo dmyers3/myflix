@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  # before_action :set_raven_context
   protect_from_forgery with: :exception
   
   helper_method :logged_in?, :current_user
@@ -21,4 +22,11 @@ class ApplicationController < ActionController::Base
   def logged_in_home_page
     redirect_to home_path if logged_in?
   end
+  
+  private
+
+  # def set_raven_context
+  #   Raven.user_context(id: session[:current_user_id]) # or anything else in session
+  #   Raven.extra_context(params: params.to_unsafe_h, url: request.url)
+  # end
 end
