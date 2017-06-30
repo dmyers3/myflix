@@ -38,8 +38,10 @@ describe UsersController do
     
     context "sending emails" do
       let(:user_attr) { Fabricate.attributes_for(:user) }
-      before { post :create, user: user_attr }
-      after { AppMailer.deliveries.clear }
+      before do
+        AppMailer.deliveries.clear
+        post :create, user: user_attr
+      end
       
       it "sends an email after creating user" do
         expect(AppMailer.deliveries.count).to eq(1)
