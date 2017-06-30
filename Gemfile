@@ -14,6 +14,7 @@ gem 'bcrypt'
 gem 'sidekiq'
 gem 'unicorn'
 gem 'sentry-raven'
+gem 'bundler'
 
 group :development do
   gem 'thin'
