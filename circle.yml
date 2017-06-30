@@ -3,6 +3,9 @@ machine:
     version: 2.3.1
 deployment:
   production:
+    dependencies:
+      pre:
+        - gem install bundler
     branch: master
     commands:
       - heroku maintenance:on --app myflix-app-dmyers3
