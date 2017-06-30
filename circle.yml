@@ -2,8 +2,8 @@ machine:
   ruby:
     version: 2.3.1
 dependencies:
-pre:
-  - gem install bundler
+  pre:
+    - gem install bundler
 deployment:
   production:
     branch: master
