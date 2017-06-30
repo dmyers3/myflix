@@ -1,11 +1,11 @@
 machine:
   ruby:
     version: 2.3.1
+dependencies:
+pre:
+  - gem install bundler
 deployment:
   production:
-    dependencies:
-      pre:
-        - gem install bundler
     branch: master
     commands:
       - heroku maintenance:on --app myflix-app-dmyers3
@@ -13,10 +13,3 @@ deployment:
       - git push git@heroku.com:myflix-app-dmyers3.git $CIRCLE_SHA1:refs/heads/master
       - heroku run rake db:migrate --app myflix-app-dmyers3
       - heroku maintenance:off --app myflix-app-dmyers3
-  # staging:
-  #   branch: staging
-  #   commands:
-  #     - heroku maintenance:on --app staging_app_name
-  #     - git push git@heroku.com:staging_app_name.git $CIRCLE_SHA1:refs/heads/master
-  #     - heroku run rake db:migrate --app staging_app_name
-  #     - heroku maintenance:off --app staging_app_name
