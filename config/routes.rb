@@ -35,6 +35,10 @@ Myflix::Application.routes.draw do
   resources :new_passwords, only: [:show, :create]
   resources :invitations, only: [:new, :create]
   
+  namespace :admin do
+    resources :videos, only: [:new, :create]
+  end
+  
   
   
   
