@@ -1,4 +1,5 @@
 require_relative '../../lib/tokenable'
+require "#{Rails.root}/lib/tokenable.rb"
 
 # can do config.autoload_paths << "#{Rails.root}/lib" in config/application.rb to include modules
 
@@ -22,5 +23,9 @@ class User < ActiveRecord::Base
   
   def follows?(leader)
     !!Relationship.find_by(follower_id: id, leader_id: leader.id)
+  end
+  
+  def admin?
+    self.admin
   end
 end

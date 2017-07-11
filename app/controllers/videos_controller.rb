@@ -1,5 +1,4 @@
-class VideosController < ApplicationController
-  before_action :redirect_logged_out
+class VideosController < AuthenticatedController
   
   def index
     @categories = Category.all
