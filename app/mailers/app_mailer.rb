@@ -5,7 +5,7 @@ class AppMailer < ActionMailer::Base
   
   def send_password_reset(user)
     @token = user.token
-    mail from: 'daniel.p.myers@gmail.com', to: user.email, subject: "Reset Password"
+    mail from: 'MyFlix <reset@MyFlix.com>', to: user.email, subject: "Reset Password"
   end
   
   def send_invitation_email(invitation)
