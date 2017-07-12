@@ -78,6 +78,8 @@ GEM
       i18n (~> 0.5)
     faraday (0.12.1)
       multipart-post (>= 1.2, < 3)
+    figaro (1.1.1)
+      thor (~> 0.14)
     fog-aws (1.4.0)
       fog-core (~> 1.38)
       fog-json (~> 1.0)
@@ -252,6 +254,7 @@ DEPENDENCIES
   database_cleaner (= 1.4.1)
   fabrication
   faker
+  figaro
   fog-aws
   haml-rails
   jquery-rails

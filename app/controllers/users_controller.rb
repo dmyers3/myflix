@@ -20,6 +20,14 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       AppMailer.welcome(current_user).deliver
       flash[:success] = "Account created!"
+      Stripe.api_key = ENV["STRIPE_SECRET_KEY"]
+      token = params[:stripeToken] || "tok_visa"
+      charge = Stripe::Charge.create(
+        :amount => 999,
+        :currency => "usd",
+        :description => "#{@user.email} Sign up charge",
+        :source => token,
+      )
       redirect_to home_path
     else
       render 'new'
