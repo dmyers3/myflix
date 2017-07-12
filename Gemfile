@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 ruby '2.3.1'
 
+gem 'rails', '4.1.9'
 gem 'bootstrap-sass', '3.1.1.1'
 gem 'coffee-rails'
-gem 'rails', '4.1.1'
 gem 'haml-rails'
 gem 'sass-rails'
 gem 'uglifier'
@@ -18,6 +18,7 @@ gem 'bundler'
 gem 'fog-aws'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'stripe'
 
 
 group :development do

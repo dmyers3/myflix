@@ -10,3 +10,7 @@ def sign_in(a_user=nil)
   click_button 'Sign in'
 end
 
+def sign_out
+  visit logout_path
+end
+
