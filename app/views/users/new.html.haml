@@ -1,15 +1,40 @@
+%script(type="text/javascript")
+  var stripe = Stripe("#{ENV['STRIPE_PUBLISHABLE_KEY']}")
+  
 %section.register.container
   .row
     .col-sm-10.col-sm-offset-1
-      = bootstrap_form_for @user, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-6" do |f|
+      = bootstrap_form_for @user, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-6", html: {id: "payment-form"} do |f|
         %header
           %h1 Register
         %fieldset
           = f.email_field :email, label: "Email Address"
           = f.password_field :password
           = f.text_field :full_name, label: "Full Name"
+        %fieldset.credit_card
+          .form-group
+            = label_tag 'card-element', 'Credit card', class: 'control-label col-sm-2'
+            #card-element.col-sm-6
+            #card-errors(role="alert" class="col-sm-8")
+            // %label.control-label.col-sm-2 Credit Card Number
+          // .form-group
+          //   %label.control-label.col-sm-2 Credit Card Number
+          //   .col-sm-6
+          //     %input.form-control(type="text")
+          // .form-group
+          //   %label.control-label.col-sm-2 Security Code
+          //   .col-sm-2
+          //     %input.form-control(type="text")
+          // .form-group
+          //   %label.control-label.col-sm-2 Expiration
+          //   .col-sm-3
+          //     = select_month(Date.today, {add_month_numbers: true},  class: 'form-control')
+          //   .col-sm-2
+          //     = select_year(Date.today.year, {start_year: Date.today.year, end_year: Date.today.year + 4}, class: 'form-control')
         %fieldset.actions.control-group.col-sm-offset-2
           .controls
-            %script(src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="#{ENV["STRIPE_PUBLISHABLE_KEY"]}" data-amount="999" data-name="MyFlix Sign Up Charge" data-description="$9.99 to sign up" data-locale="auto")
+            = f.submit "Sign Up"
+            // %script(src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="#{ENV["STRIPE_PUBLISHABLE_KEY"]}" data-amount="999" data-name="MyFlix Sign Up Charge" data-description="$9.99 to sign up" data-locale="auto")
+= javascript_include_tag 'payment'
 
             
