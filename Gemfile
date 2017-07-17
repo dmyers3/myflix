@@ -46,6 +46,9 @@ group :test do
   gem 'capybara'
   gem 'capybara-email'
   gem 'launchy'
+  gem 'selenium-webdriver'
+  gem 'poltergeist'
+  gem 'phantomjs', :require => 'phantomjs/poltergeist'
 end
 
 group :production do

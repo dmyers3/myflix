@@ -56,6 +56,12 @@ describe UsersController do
       end
     end
     
+    context "with valid cc number" do
+      it "sets the flash success message" do
+        
+      end
+    end
+    
     context "with valid input" do
       before { post :create, user: Fabricate.attributes_for(:user) }
       
