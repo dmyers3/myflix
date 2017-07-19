@@ -6,6 +6,7 @@ require 'capybara/rails'
 require 'capybara/email/rspec'
 require 'sidekiq/testing'
 require 'vcr'
+require 'database_cleaner'
 Sidekiq::Testing.inline!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -47,7 +48,8 @@ RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  config.use_transactional_fixtures = true
+  # I manually changed this to false to prevent feature test from persisting data
+  config.use_transactional_fixtures = false
 
   # If true, the base class of anonymous controllers will be inferred
   # automatically. This will be the default behavior in future versions of
@@ -91,7 +93,20 @@ RSpec.configure do |config|
     DatabaseCleaner.start
   end
   
-  config.after(:each) do
+  config.before(:each, type: :feature) do
+    # :rack_test driver's Rack app under test shares database connection
+    # with the specs, so continue to use transaction strategy for speed.
+    driver_shares_db_connection_with_specs = Capybara.current_driver == :rack_test
+
+    if !driver_shares_db_connection_with_specs
+      # Driver is probably for an external browser with an app
+      # under test that does *not* share a database connection with the
+      # specs, so use truncation strategy.
+      DatabaseCleaner.strategy = :truncation
+    end
+  end
+  
+  config.append_after(:each) do
     DatabaseCleaner.clean
   end
 end

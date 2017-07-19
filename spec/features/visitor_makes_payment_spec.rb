@@ -17,7 +17,7 @@ feature "Visitor registers and makes payment", js: true, driver: :poltergeist, v
     end
     
     click_button "Sign Up"
-    sleep 1
+    sleep 5
     
     expect(page).to have_content "Account created!"
     
