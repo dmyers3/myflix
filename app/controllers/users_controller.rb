@@ -15,17 +15,18 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(user_params)
-    
-    if @user.valid? && valid_card_charge?
-      @user.save
-      session[:user_id] = @user.id
-      AppMailer.welcome(current_user).deliver
+    result = UserSignup.new(@user).sign_up(params[:stripeToken])
+    if result.successful?
       flash[:success] = "Account created!"
+      session[:user_id] = @user.id
       redirect_to home_path
     else
+      flash[:danger] = result.error_message
       render 'new'
     end
   end
+    
+    
   
   private
   
@@ -33,16 +34,6 @@ class UsersController < ApplicationController
       params.require('user').permit('email', 'password', 'full_name')
     end
     
-    def valid_card_charge?
-      token = Rails.env.test? ? "tok_visa" : params[:stripeToken]
-      charge = StripeWrapper::Charge.create(:amount => 999, 
-        :description => "#{@user.email} Sign up charge", :source => token)
-      if charge.successful?
-        true
-      else
-        flash[:danger] = charge.error_message
-        false
-      end
-    end
+    
     
 end

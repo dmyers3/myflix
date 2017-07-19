@@ -74,6 +74,11 @@ GEM
     database_cleaner (1.4.1)
     debug_inspector (0.0.3)
     diff-lcs (1.3)
+    draper (2.1.0)
+      actionpack (>= 3.0)
+      activemodel (>= 3.0)
+      activesupport (>= 3.0)
+      request_store (~> 1.0)
     erubis (2.7.0)
     eventmachine (1.2.3)
     excon (0.57.1)
@@ -186,6 +191,7 @@ GEM
     raindrops (0.18.0)
     rake (10.5.0)
     redis (3.3.3)
+    request_store (1.3.2)
     rspec-collection_matchers (1.1.3)
       rspec-expectations (>= 2.99.0.beta1)
     rspec-core (2.99.2)
@@ -235,6 +241,9 @@ GEM
       sprockets (>= 2.8, < 4.0)
     stripe (3.0.0)
       faraday (~> 0.9)
+    stripe_event (1.7.0)
+      activesupport (>= 3.1)
+      stripe (>= 1.6, < 4.0)
     temple (0.8.0)
     thin (1.7.2)
       daemons (~> 1.0, >= 1.0.9)
@@ -276,6 +285,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails
   database_cleaner (= 1.4.1)
+  draper
   fabrication
   faker
   figaro
@@ -300,6 +310,7 @@ DEPENDENCIES
   shoulda-matchers (= 2.7.0)
   sidekiq
   stripe
+  stripe_event
   thin
   uglifier
   unicorn

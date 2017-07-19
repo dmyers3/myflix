@@ -37,11 +37,10 @@ Myflix::Application.routes.draw do
   
   namespace :admin do
     resources :videos, only: [:new, :create]
+    resources :payments, only: [:index]
   end
   
-  
-  
-  
+  mount StripeEvent::Engine, at: '/stripe_events' # provide a custom path
   
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

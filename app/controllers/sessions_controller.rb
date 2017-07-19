@@ -7,9 +7,12 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:email])
     
-    if user && user.authenticate(params[:password])
+    if user && user.authenticate(params[:password]) && user.no_hold?
       session[:user_id] = user.id
       redirect_to home_path
+    elsif user.hold?
+      flash[:danger] = "Your account is temporarily on hold. Please check your email."
+      render 'new'
     else
       flash[:danger] = "Incorrect Email and/or Password"
       render 'new'

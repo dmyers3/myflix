@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :followers, through: :leading_relationships
   has_many :leaders, through: :following_relationships
   has_many :invitations
+  has_many :payments
   
   
   validates_presence_of :email, :full_name
@@ -23,6 +24,10 @@ class User < ActiveRecord::Base
   
   def follows?(leader)
     !!Relationship.find_by(follower_id: id, leader_id: leader.id)
+  end
+  
+  def no_hold?
+    hold == nil || hold == false
   end
   
   def admin?

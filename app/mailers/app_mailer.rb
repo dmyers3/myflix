@@ -14,5 +14,9 @@ class AppMailer < ActionMailer::Base
     to: invitation.recipient_email
   end
   
+  def card_declined(user)
+    mail from: 'MyFlix <info@MyFlix.com>', to: user.email, subject: "Your Account is on hold"
+  end
+  
   # to execute in a controller do AppMailer.example(user, object).deliver
 end
