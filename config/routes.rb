@@ -20,6 +20,7 @@ Myflix::Application.routes.draw do
   resources :videos, only: [:show] do
     collection do
       get 'search', to: 'videos#search'
+      get 'advanced_search', to: 'videos#advanced_search'
     end
     resources :reviews, only: [:create]
   end
@@ -39,6 +40,7 @@ Myflix::Application.routes.draw do
     resources :videos, only: [:new, :create]
     resources :payments, only: [:index]
   end
+  
   
   mount StripeEvent::Engine, at: '/stripe_events' # provide a custom path
   

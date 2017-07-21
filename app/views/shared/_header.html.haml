@@ -11,6 +11,7 @@
       .form-group
         = text_field_tag 'query', nil, placeholder: "Search for videos here", class: 'form-control'
       = button_tag 'Search', class: 'btn btn-default'
+    = link_to "Advanced Search", advanced_search_videos_path, class: "advanced_search_link"
     #user_links.pull-right
       %ul
         %li.dropdown
